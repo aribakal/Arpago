@@ -41,3 +41,7 @@ header a {
   text-decoration: none;
   color: #333;
 }
+header img {
+  width: 100px;
+  height: auto;
+}
