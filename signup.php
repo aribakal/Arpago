@@ -14,9 +14,8 @@ if (isset($_POST['register'])){
     } else {
       $message = 'Sorry there must have been an issue creating your account';
     }
+  }
 }
-}
-
 
 ?>
 <!DOCTYPE html>

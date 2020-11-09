@@ -1,3 +1,32 @@
+<?php
+
+  session_start();
+
+  if (isset($_SESSION['user_id'])) {
+    header('Location: /Arpago');
+  }
+
+  require 'conexion.php';
+
+  if (!empty($_POST['username']) && !empty($_POST['password'])) {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    $consulta = mysqli_query($conexion, "SELECT id, username, password FROM users WHERE username='$username'");
+    $resultado = mysqli_fetch_array($consulta);
+
+    $message = '';
+
+    if ($password == $resultado['password']) {
+      $_SESSION['user_id'] = $resultado['id'];
+      header('Location: /Arpago');
+
+    } else {
+      $message = 'Sorry, wrong username/password';
+    }
+  }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -11,7 +40,11 @@
     <h1>Login</h1>
 
     <span>or <a href="signup.php">SignUp</a></span>
-    <form class="" action="index.html" method="post">
+
+    <?php if (!empty($message)) : ?>
+      <p><?= $message ?></p>
+    <?php endif; ?>
+
 
     <form action="login.php" method="post">
 

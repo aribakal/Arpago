@@ -1,3 +1,21 @@
+<?php
+  session_start();
+
+  require 'conexion.php';
+
+  if (isset($_SESSION['user_id'])) {
+    $id = $_SESSION['user_id'];
+    $consulta = mysqli_query($conexion, "SELECT id, username, password FROM users WHERE id='$id'");
+    $resultado = mysqli_fetch_array($consulta);
+
+    $user = null;
+
+    if (count($resultado) > 0) {
+      $user = $resultado;
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -10,9 +28,17 @@
 
     <?php require 'partials/header.php' ?>
 
-    <h1>Please Login or SingUp</h1>
+    <?php if(!empty($user)): ?>
+      <br>Welcome back <b><?= $user['username'] ?></b> !
+      <br>You are Successfully Logged In
+      <a href="logout.php">
+        Logout
+      </a>
+    <?php else: ?>
+      <h1>Please Login or SignUp</h1>
 
-    <a href="login.php">Login</a>
-    <a href="signup.php">SingUp</a>
+      <a href="login.php">Login</a> or
+      <a href="signup.php">SignUp</a>
+    <?php endif; ?>
   </body>
 </html>
