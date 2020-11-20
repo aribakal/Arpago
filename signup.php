@@ -2,7 +2,6 @@
   include("conexion.php");
 
   $message = '';
-<<<<<<< HEAD
 
 
 
@@ -41,56 +40,6 @@
    }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-if (isset($_POST['register'])){
-  if (strlen($_POST['username']) >= 1 && strlen($_POST['password']) >= 1) {
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
-    $registerdate = date("d/m/y");
-    $saldoinicio = 0;
-    $resultado = mysqli_query($conexion, "INSERT INTO users(username, password, registerdate, saldo) VALUES ('$username','$password','$registerdate','$saldoinicio')");
-    if ($resultado) {
-      $message = 'Successfully created new user';
-    } else {
-      $message = 'Sorry there must have been an issue creating your account';
-    }
-  }
-}
-
->>>>>>> 6951c95b61fdcea93e30daab4070a34e58994e0f
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
