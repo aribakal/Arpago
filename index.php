@@ -5,11 +5,7 @@
 
   if (isset($_SESSION['user_id'])) {
     $id = $_SESSION['user_id'];
-<<<<<<< HEAD
     $consulta = mysqli_query($conexion, "SELECT id, username, password, saldo FROM users WHERE id='$id'");
-=======
-    $consulta = mysqli_query($conexion, "SELECT id, username, password FROM users WHERE id='$id'");
->>>>>>> 6951c95b61fdcea93e30daab4070a34e58994e0f
     $resultado = mysqli_fetch_array($consulta);
 
     $user = null;
@@ -33,15 +29,11 @@
     <?php require 'partials/header.php' ?>
 
     <?php if(!empty($user)): ?>
-      <br>Welcome back <b><?= $user['username'] ?></b> !
-<<<<<<< HEAD
+      <br>Hola, <b><?= $user['username'] ?></b> !
       <br>$ <b style="color:red;"><?= $user['saldo'] ?></b>
       <h1></h1>
-      <input type="submit" value="Pagar">
+      <a href = "payment.php"><input type="submit" value="Pagar"></a>
       <h1></h1>
-=======
-      <br>You are Successfully Logged In
->>>>>>> 6951c95b61fdcea93e30daab4070a34e58994e0f
       <a href="logout.php">
         Logout
       </a>
